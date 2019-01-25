@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.muka.cursomc.domain.Categoria;
 import com.muka.cursomc.repositories.CategoriaRepository;
+import com.muka.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -14,9 +15,16 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Optional<Categoria> buscar(Integer id) {
+	//public Optional<Categoria> find(Integer id) {
+	//	Optional<Categoria> obj = repo.findById(id);
+		//return obj.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName())); 
+		//if (obj == null) {
+		//	throw new ObjectNotFoundException("Objeto nao encontrado! " + id + ", Tipo: " + Categoria.class.getName());
+		//}
+		//return obj;
+	//} 
+	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj;
-	}
-	
+		return obj.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName())); 
+	} 
 }
