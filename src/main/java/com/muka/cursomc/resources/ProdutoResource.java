@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.muka.cursomc.domain.Produto;
-import com.muka.cursomc.dto.CategoriaDTO;
 import com.muka.cursomc.dto.ProdutoDTO;
 import com.muka.cursomc.resources.utils.URL;
 import com.muka.cursomc.services.ProdutoService;

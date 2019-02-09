@@ -19,7 +19,6 @@ import com.muka.cursomc.domain.Endereco;
 import com.muka.cursomc.domain.enums.TipoCliente;
 import com.muka.cursomc.dto.ClienteDTO;
 import com.muka.cursomc.dto.ClienteNewDTO;
-import com.muka.cursomc.repositories.CidadeRepository;
 import com.muka.cursomc.repositories.ClienteRepository;
 import com.muka.cursomc.repositories.EnderecoRepository;
 import com.muka.cursomc.services.exceptions.DataIntegrityException;
@@ -30,9 +29,6 @@ public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repo;
-	
-	@Autowired
-	private CidadeRepository cidadeRepository;
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
