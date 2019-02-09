@@ -16,11 +16,14 @@ import org.springframework.stereotype.Service;
 import com.muka.cursomc.domain.Cidade;
 import com.muka.cursomc.domain.Cliente;
 import com.muka.cursomc.domain.Endereco;
+import com.muka.cursomc.domain.enums.Perfil;
 import com.muka.cursomc.domain.enums.TipoCliente;
 import com.muka.cursomc.dto.ClienteDTO;
 import com.muka.cursomc.dto.ClienteNewDTO;
 import com.muka.cursomc.repositories.ClienteRepository;
 import com.muka.cursomc.repositories.EnderecoRepository;
+import com.muka.cursomc.security.UserSS;
+import com.muka.cursomc.services.exceptions.AuthorizationException;
 import com.muka.cursomc.services.exceptions.DataIntegrityException;
 import com.muka.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -45,8 +48,15 @@ public class ClienteService {
 		//return obj;
 	//} 
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException(    "Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName())); 
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	} 
 	
 	@Transactional
