@@ -27,6 +27,9 @@ public class ClienteNewDTO implements Serializable {
 	private Integer tipo;
 	
 	@NotEmpty(message="Preechimento Obrigatorio!")
+	private String senha;
+	
+	@NotEmpty(message="Preechimento Obrigatorio!")
 	private String logradouro;
 
 	@NotEmpty(message="Preechimento Obrigatorio!")
@@ -152,5 +155,13 @@ public class ClienteNewDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		CidadeId = cidadeId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }
